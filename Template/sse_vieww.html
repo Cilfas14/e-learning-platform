@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 id="gtg"></h1>
+<div id="hyh"></div>
+
+
+<script>
+if (typeof(EventSource) !== "undefined") {
+  var source = new EventSource("/sse1/");
+  source.onopen = function() {
+    document.getElementById("gtg").innerHTML = "Getting server updates";
+  };
+
+  source.onmessage = function(event) {
+    document.getElementById("hyh").innerHTML += event.data + "<br>";
+  };
+
+} else {
+  document.getElementById("myDIV").innerHTML = "Sorry, your browser does not support server-sent events...";
+}
+</script>
+
+</body>
+</html>

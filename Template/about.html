@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - E-Learning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    main {
+      padding: 60px 20px;
+      text-align: center;
+      background: url('/static/images/about-bg.jpg') no-repeat center center/cover;
+      color: #fff;
+    }
+
+    main h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    main p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .heading h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 40px;
+      text-align: center;
+      color: #444;
+    }
+
+    .our-webcoderskull .cnt-block {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 30px 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .our-webcoderskull .cnt-block:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .our-webcoderskull figure {
+      margin-bottom: 15px;
+    }
+
+    .our-webcoderskull img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .our-webcoderskull h3 {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    .our-webcoderskull p {
+      font-size: 0.95rem;
+      margin: 5px 0;
+    }
+
+    @media (max-width: 768px) {
+      main h1 {
+        font-size: 2.2rem;
+      }
+
+      .heading h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main>
+  <h1>About Us</h1>
+  <p>
+    Welcome to our E-Learning platform! We are a team of passionate educators, developers, and learners dedicated to making quality education accessible to everyone. Our goal is to empower students across the globe by providing interactive courses, expert mentorship, and real-world projects.
+    {% if df.About_website %}
+      <br><br>{{df.About_website}}
+    {% endif %}
+  </p>
+</main>
+
+<section class="our-webcoderskull py-5">
+  <div class="container">
+    <div class="heading">
+      <h2>Our Team</h2>
+    </div>
+    <div class="row">
+      {% for t in gt %}
+      <div class="col-md-6 col-lg-3 mb-4">
+        <div class="cnt-block">
+          <figure><img src="{{ t.Image.url }}" alt="Team member"></figure>
+          <h3>{{ t.user.first_name }} {{ t.user.last_name }}</h3>
+          <p><strong>{{ t.Qualification }}</strong></p>
+          <p>{{ t.Introduction_brief }}</p>
+          <p><a href="mailto:{{ t.user.email }}">{{ t.user.email }}</a></p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
